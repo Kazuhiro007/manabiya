@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<h1>講座詳細情報</h1>
+
+<p>
+  <strong>Category:</strong>
+  <%= @lesson.category %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @lesson.content %>
+</p>
+
+<p>
+  <strong>Date and time:</strong>
+  <%= @lesson.date_and_time %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @lesson.start %>
+</p>
+
+<p>
+  <strong>Dead line:</strong>
+  <%= @lesson.dead_line %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @lesson.term %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @lesson.place %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @lesson.price %>
+</p>
+
+<p>
+  <strong>Max:</strong>
+  <%= @lesson.max %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @lesson.user.name %>
+</p>
+
+<p>
+  <strong>Participate_users:</strong>
+  <%= @lesson.participate_users.count %>
+</p>
+
+<%= link_to user_path(id: @lesson.user_id), method: :get do %>
+  <p>講師プロフィール</p>
+<% end %>
+
+<% if !@lesson.favorite_users.include?(current_user) %>
+  <%= link_to favorites_path(lesson_id: @lesson.id), method: :post do %>
+    <p>気になる</p>
+  <% end %>
+<% else %>
+  <%= link_to favorites_path(lesson_id: @lesson.id), method: :delete do %>
+    <p>気になる取り消し</p>
+  <% end %>
+<% end %>
+
+<% if !@lesson.participate_users.include?(current_user) %>
+  <% if @lesson.max %>
+    <% if @lesson.participate_users.count < @lesson.max %>
+      <%= link_to participate_path(lesson_id: @lesson.id), method: :post do %>
+        <p>参加する</p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to participate_path(lesson_id: @lesson.id), method: :post do %>
+      <p>参加する</p>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to participate_path(lesson_id: @lesson.id), method: :delete do %>
+    <p>参加取り消し</p>
+  <% end %>
+<% end %>
+
+<% if @lesson.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+  <%= link_to 'Back', lessons_path %>
+<% end %>

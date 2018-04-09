@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lessons</h1>
+
+<table cellspacing="15">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Date and time</th>
+      <th>Start</th>
+      <th>Dead line</th>
+      <th>Term</th>
+      <th>Place</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participate_lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.category %></td>
+        <td><%= lesson.date_and_time %></td>
+        <td><%= lesson.start %></td>
+        <td><%= lesson.dead_line %></td>
+        <td><%= lesson.term %></td>
+        <td><%= lesson.place %></td>
+        <td><%= link_to 'Show', lesson %></td>
+        <% if lesson.user_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
+          <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson', new_lesson_path %>

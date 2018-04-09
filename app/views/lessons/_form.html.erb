@@ -1,0 +1,66 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category, id: :lesson_category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :lesson_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_and_time %>
+    <%= form.text_field :date_and_time, id: :lesson_date_and_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.text_field :start, id: :lesson_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dead_line %>
+    <%= form.text_field :dead_line, id: :lesson_dead_line %>
+  </div>
+
+  <div class="field">
+    <%= form.label :term %>
+    <%= form.text_field :term, id: :lesson_term %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.text_field :place, id: :lesson_place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :lesson_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max %>
+    <%= form.number_field :max, id: :lesson_max %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id, id: :user_id_place %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

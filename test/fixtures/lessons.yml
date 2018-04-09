@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  content: MyString
+  date_and_time: MyString
+  start: MyString
+  dead_line: MyString
+  term: MyString
+  place: MyString
+  user_id: 1
+
+two:
+  category: MyString
+  content: MyString
+  date_and_time: MyString
+  start: MyString
+  dead_line: MyString
+  term: MyString
+  place: MyString
+  user_id: 1
